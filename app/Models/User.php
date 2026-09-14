@@ -24,7 +24,7 @@ class User extends Authenticatable
         'user_name',
         'email',
         'password',
-        'role',
+        
         'estado_activo',
     ];
 
@@ -49,5 +49,13 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+    public function rol()
+    {
+    return $this->belongsTo(Rol::class, 'id_rol'); // Reemplaza 'id_rol' por el nombre de tu columna de unión si es diferente
+    }
+    public function cursos()
+    {
+    return $this->belongsToMany(Curso::class, 'asignaciones', 'id_profesor', 'id_curso');
     }
 }

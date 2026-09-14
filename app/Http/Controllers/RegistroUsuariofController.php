@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 
 class RegistroUsuariofController extends Controller
 {
+    
     /**
      * 1. MUESTRA EL PANEL PRINCIPAL
      * Carga el formulario y el listado de profesores en la misma pantalla (regusuario.blade.php).
@@ -42,7 +43,7 @@ class RegistroUsuariofController extends Controller
             'last_name' => 'required|string|max:255',
             'ci_user' => 'required|int',
             'email' => 'required|string|email|max:255',
-            'role' => 'required|string',
+            
             'password' => 'required|string',
             'estado_activo' => 'required|string',
         ]);
@@ -61,7 +62,7 @@ class RegistroUsuariofController extends Controller
             'ci_user' => $request->ci_user,
             'user_name' => $userNameBase,
             'email' => $request->email,
-            'role' => $request->role,
+            
             'password' => Hash::make($request->password), // Contraseña protegida
             'estado_activo' => $request->estado_activo,
         ]);
@@ -82,7 +83,7 @@ class RegistroUsuariofController extends Controller
             'last_name' => 'required|string|max:255',
             'ci_user' => 'required|int',
             'email' => 'required|string|email',
-            'role' => 'required|string',
+            
             'password' => 'nullable|string|min:6', // Opcional al editar
             'estado_activo' => 'required|string',
         ]);
@@ -91,7 +92,7 @@ class RegistroUsuariofController extends Controller
         $user->last_name = $request->last_name;
         $user->ci_user = $request->ci_user;
         $user->email = $request->email;
-        $user->role = $request->role;
+    
         $user->estado_activo = $request->estado_activo;
 
         // Si escribió algo en el campo contraseña, la encriptamos y actualizamos

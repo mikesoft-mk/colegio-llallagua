@@ -11,7 +11,10 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        //
+        //controla inicio y verifica si es director
+         $middleware->alias([
+        'director' => \App\Http\Middleware\InicioDirector::class,
+    ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

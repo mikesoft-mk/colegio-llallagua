@@ -39,6 +39,7 @@
                         <!--<h6 class="collapse-header">Custom Components:</h6>-->
                         <a class="collapse-item" href="{{ route('profesores.vista') }}">Usuarios</a>
                         <a class="collapse-item" href="cards.html">Estudiantes</a>
+                        <a class="collapse-item" href="{{ route('director.asignaciones.index') }}">Aasignaciones</a>
                     </div>
                 </div>
             </li>
