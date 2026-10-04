@@ -1,0 +1,337 @@
+.top-bar {
+    font-size: 0.9rem;
+    padding: 0.55rem 0;
+    background: #fff;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.top-bar small {
+    color: #555;
+}
+
+.top-bar i {
+    width: 18px;
+    text-align: center;
+}
+
+.top-bar a {
+    text-decoration: none;
+}
+
+.logo-navbar {
+    position: relative;
+    height: 110px;
+    margin-bottom: -50px;
+    z-index: 1000;
+}
+@media (max-width: 992px) {
+    .logo-navbar {
+        height: 60px;
+        margin: 0;
+        padding: 0;
+    }
+}
+
+.bg-primary {
+    background: #00bdff !important;
+}
+.bg-submenu {
+    background: #00bdff !important;
+}
+.bg-text-submenu:hover {
+    background: #5cd3ff !important;
+}
+
+@media (max-width: 768px) {
+    .logo-navbar {
+        height: 50px;
+        margin: 0;
+        padding: 0;
+    }
+}
+
+.navbar-list {
+    font-weight: bold;
+}
+.active {
+    color: #0d47a1 !important;
+}
+
+/* Mostrar el dropdown al pasar el mouse */
+.navbar .dropdown:hover > .dropdown-menu {
+    display: block;
+    margin-top: 0;
+}
+
+/* Mantener el botón como activo mientras el menú está abierto */
+.navbar .dropdown:hover > .dropdown-toggle {
+    color: #fff;
+}
+
+/* Banner Principal */
+/* ===========================
+        HERO
+=========================== */
+
+#bannerCarousel {
+    position: relative;
+}
+
+/* Imágenes */
+
+.banner-img {
+    height: 75vh;
+    object-fit: cover;
+}
+
+/* Oscurecer imagen */
+
+.banner-overlay {
+    position: absolute;
+
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.45);
+
+    z-index: 1;
+}
+
+/* Contenido */
+
+.banner-content {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+
+    z-index: 2;
+}
+
+/* Badge */
+
+.hero-badge {
+    display: inline-block;
+
+    background: #ffc107;
+
+    color: #212529;
+
+    padding: 6px 15px;
+
+    border-radius: 30px;
+
+    font-weight: bold;
+
+    margin-bottom: 20px;
+}
+
+/* Título */
+
+.banner-content h1 {
+    color: white;
+
+    font-size: 3.5rem;
+
+    font-weight: 700;
+
+    line-height: 1.1;
+}
+
+/* Texto */
+
+.banner-content p {
+    color: white;
+
+    font-size: 1.2rem;
+
+    margin: 25px 0;
+
+    max-width: 550px;
+}
+
+/* Botones */
+
+.banner-content .btn {
+    border-radius: 40px;
+
+    padding: 12px 35px;
+
+    font-weight: 600;
+}
+
+/* Indicadores */
+
+.carousel-indicators li {
+    width: 12px;
+
+    height: 12px;
+
+    border-radius: 50%;
+}
+
+/* Flechas */
+
+.carousel-control-prev,
+.carousel-control-next {
+    opacity: 0;
+
+    transition: 0.3s;
+}
+
+#bannerCarousel:hover .carousel-control-prev,
+#bannerCarousel:hover .carousel-control-next {
+    opacity: 1;
+}
+
+@media (max-width: 991px) {
+    .banner-img {
+        height: calc(100vh - 132px);
+    }
+
+    .banner-content {
+        text-align: center;
+    }
+
+    .banner-content h1 {
+        font-size: 2rem;
+    }
+
+    .banner-content p {
+        font-size: 1rem;
+
+        margin: 20px auto;
+    }
+
+    .banner-content .btn {
+        display: block;
+
+        width: 100%;
+
+        margin-bottom: 10px;
+    }
+}
+.facebook-desktop {
+    display: block;
+}
+
+.facebook-mobile {
+    display: none;
+}
+
+.facebook-card {
+    background: white;
+
+    border-radius: 15px;
+
+    padding: 40px 20px;
+
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+.facebook-card i {
+    font-size: 70px;
+
+    color: #1877f2;
+
+    margin-bottom: 20px;
+}
+
+.facebook-card .btn {
+    border-radius: 30px;
+
+    padding: 12px 30px;
+}
+@media (max-width: 576px) {
+    .facebook-desktop {
+        display: none;
+    }
+
+    .facebook-mobile {
+        display: block;
+    }
+}
+/*==========================
+        PAGE BANNER
+==========================*/
+
+.page-banner {
+    position: relative;
+
+    height: 320px;
+
+    background-size: cover;
+    background-position: center;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+}
+
+.page-banner-overlay {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: rgba(0, 0, 0, 0.55);
+}
+
+.page-banner .container {
+    position: relative;
+
+    z-index: 2;
+}
+
+.page-banner-content {
+    color: white;
+
+    max-width: 850px;
+
+    margin: auto;
+}
+
+.page-banner-content h1 {
+    font-size: 3rem;
+
+    font-weight: 700;
+
+    margin-bottom: 20px;
+
+    text-transform: uppercase;
+}
+
+.page-banner-content p {
+    font-size: 1.2rem;
+
+    line-height: 1.8;
+
+    margin: 0 auto;
+
+    max-width: 650px;
+}
+@media (max-width: 991px) {
+    .page-banner {
+        height: 240px;
+    }
+
+    .page-banner-content h1 {
+        font-size: 2rem;
+    }
+
+    .page-banner-content p {
+        font-size: 1rem;
+
+        max-width: 90%;
+    }
+}

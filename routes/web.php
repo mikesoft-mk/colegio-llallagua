@@ -9,8 +9,18 @@ use App\Http\Controllers\ProfesorController;
 use App\Http\Controllers\ConsultasController;
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('public.inicio');
+})->name('inicio');
+
+Route::view('/comunicados', 'public.comunicados')->name('comunicados');
+Route::view('/publicaciones', 'public.publicaciones')->name('publicaciones');
+Route::view('/administrativo', 'public.administrativo')->name('administrativo');
+Route::view('/gobierno', 'public.gobierno')->name('gobierno');
+Route::view('/historia', 'public.historia')->name('historia');
+Route::view('/junta', 'public.junta')->name('junta');
+Route::view('/reglamento', 'public.reglamento')->name('reglamento');
+Route::view('/uniforme', 'public.uniforme')->name('uniforme');
+Route::view('/calificaciones', 'public.calificaciones')->name('calificaciones');
 
 
 Auth::routes();
