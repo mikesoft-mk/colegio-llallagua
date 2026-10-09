@@ -50,7 +50,7 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
-    public function rol()
+    public function rol(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
     return $this->belongsTo(Rol::class, 'id_rol'); // Reemplaza 'id_rol' por el nombre de tu columna de unión si es diferente
     }

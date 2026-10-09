@@ -2,110 +2,76 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Rol;
+use App\Models\User;
 use Illuminate\Http\Request;
-use App\Models\User; 
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 class RegistroUsuariofController extends Controller
 {
-    
-    /**
-     * 1. MUESTRA EL PANEL PRINCIPAL
-     * Carga el formulario y el listado de profesores en la misma pantalla (regusuario.blade.php).
-     */
     public function mostrarPanel(Request $request)
     {
-        // Jalamos todos los usuarios de la base de datos para la tabla derecha
-        $users = User::latest()->get();
+        $users = User::with('rol')->latest()->get();
+        $roles = Rol::orderBy('nombre_rol')->get();
+        $userToEdit = $request->filled('edit') ? User::find($request->integer('edit')) : null;
 
-        // Inicializamos la edición como vacía
-        $userToEdit = null;
-
-        // Si el usuario hace clic en "Editar", la URL tendrá un ?edit=ID
-        if ($request->has('edit')) {
-            $userToEdit = User::find($request->edit);
-        }
-
-        // Abrimos tu archivo regusuario.blade.php pasando los datos de forma segura
-        return view('regusuarios', compact('users', 'userToEdit'));
+        return view('regusuarios', compact('users', 'roles', 'userToEdit'));
     }
 
-    /**
-     * 2. GUARDA UN NUEVO PROFESOR
-     * Se activa al presionar el botón azul de guardar.
-     */
     public function guardarProfesor(Request $request)
     {
-        // Validaciones
-        $request->validate([
+        $data = $request->validate([
             'name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
-            'ci_user' => 'required|int',
-            'email' => 'required|string|email|max:255',
-            
-            'password' => 'required|string',
-            'estado_activo' => 'required|string',
+            'ci_user' => 'required|string|max:255',
+            'id_rol' => 'required|exists:roles,id',
+            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users', 'email')],
+            'password' => 'required|string|min:8',
+            'estado_activo' => 'required|boolean',
         ]);
 
-         $inicialapellido = Str::upper(Str::substr($request->last_name, 0, 1));
-         $nombrelimpio = Str::ascii($request->name);
-         $userNameBase = str_replace(' ', '', $nombrelimpio . $inicialapellido);
-         $namemayus = Str::title($request->name);
-         $last_namemayus = Str::title($request->last_name);
+        $inicialApellido = Str::upper(Str::substr($data['last_name'], 0, 1));
+        $nombreLimpio = Str::ascii($data['name']);
 
-
-        // Inserta
         User::create([
-            'name' => $namemayus,
-            'last_name' => $last_namemayus,
-            'ci_user' => $request->ci_user,
-            'user_name' => $userNameBase,
-            'email' => $request->email,
-            
-            'password' => Hash::make($request->password), // Contraseña protegida
-            'estado_activo' => $request->estado_activo,
+            ...$data,
+            'name' => Str::title($data['name']),
+            'last_name' => Str::title($data['last_name']),
+            'user_name' => str_replace(' ', '', $nombreLimpio.$inicialApellido),
+            'password' => Hash::make($data['password']),
         ]);
 
-        // Redireccionamiento
         return redirect()->route('profesores.vista')->with('success', 'Usuario registrado con éxito.');
     }
 
-    /**
-     *uPdAtE
-     */
-    public function actualizarProfesor(Request $request, $id)
+    public function actualizarProfesor(Request $request, int $id)
     {
         $user = User::findOrFail($id);
-
-        $request->validate([
+        $data = $request->validate([
             'name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
-            'ci_user' => 'required|int',
-            'email' => 'required|string|email',
-            
-            'password' => 'nullable|string|min:6', // Opcional al editar
-            'estado_activo' => 'required|string',
+            'ci_user' => 'required|string|max:255',
+            'id_rol' => 'required|exists:roles,id',
+            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users', 'email')->ignore($user->id)],
+            'password' => 'nullable|string|min:8',
+            'estado_activo' => 'required|boolean',
         ]);
 
-        $user->name = $request->name;
-        $user->last_name = $request->last_name;
-        $user->ci_user = $request->ci_user;
-        $user->email = $request->email;
-    
-        $user->estado_activo = $request->estado_activo;
-
-        // Si escribió algo en el campo contraseña, la encriptamos y actualizamos
-        if ($request->filled('password')) {
-            $user->password = Hash::make($request->password);
+        if (filled($data['password'])) {
+            $data['password'] = Hash::make($data['password']);
+        } else {
+            unset($data['password']);
         }
 
+        $user->fill([
+            ...$data,
+            'name' => Str::title($data['name']),
+            'last_name' => Str::title($data['last_name']),
+        ]);
         $user->save();
 
         return redirect()->route('profesores.vista')->with('success', 'Usuario actualizado con éxito.');
-        
     }
-
-    
 }
-

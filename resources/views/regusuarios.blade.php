@@ -87,10 +87,12 @@
                         
                         <div class="mb-3">
                             <label class="form-label text-primary small font-weight-bold mb-1">Rol</label>
-                            <select class="form-select bg-light border-0" name="role" required>
-                                <option value="Administrador" {{ old('role', $userToEdit->rol ?? '') == 'Administrador' ? 'selected' : '' }}>Administrador</option>
-                                <option value="Profesor" {{ old('role', $userToEdit->rol ?? '') == 'Profesor' ? 'selected' : '' }}>Profesor</option>
-                                <option value="Director" {{ old('role', $userToEdit->rol ?? '') == 'Director' ? 'selected' : '' }}>Director</option>
+                            <select class="form-select bg-light border-0" name="id_rol" required>
+                                @foreach ($roles as $rol)
+                                    <option value="{{ $rol->id }}" {{ (int) old('id_rol', $userToEdit->id_rol ?? 0) === $rol->id ? 'selected' : '' }}>
+                                        {{ $rol->nombre_rol }}
+                                    </option>
+                                @endforeach
                             </select>
                         </div>
 
@@ -107,8 +109,8 @@
                         <div class="mb-4">
                             <label class="form-label text-primary small font-weight-bold mb-1">Estado de Profesor</label>
                             <select class="form-select bg-light border-0" name="estado_activo" required>
-                                <option value="1" {{ old('estado_activo', $userToEdit->estado_activo ?? '') == 'Activo' ? 'selected' : '' }}>Activo</option>
-                                <option value="0" {{ old('estado_activo', $userToEdit->estado_activo ?? '') == 'Inactivo' ? 'selected' : '' }}>Inactivo</option>
+                                <option value="1" {{ (int) old('estado_activo', $userToEdit->estado_activo ?? 1) === 1 ? 'selected' : '' }}>Activo</option>
+                                <option value="0" {{ (int) old('estado_activo', $userToEdit->estado_activo ?? 1) === 0 ? 'selected' : '' }}>Inactivo</option>
                             </select>
                         </div>
 
@@ -151,7 +153,7 @@
                                             
                                             <!-- Rol con estilos -->
                                             <td>
-                                                <span class="text-primary fw-semibold medium">{{ $user->role }}</span>
+                                                <span class="text-primary fw-semibold medium">{{ $user->rol?->nombre_rol ?? 'Sin asignar' }}</span>
                                             </td>
                                             
                                             

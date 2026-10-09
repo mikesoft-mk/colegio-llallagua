@@ -12,10 +12,9 @@ class AsignacionController extends Controller
   public function index()
 {
     // 1. Consulta para cargar los profesores (ID 2 de la tabla roles)
-    $profesores = User::join('roles', 'users.id_rol', '=', 'id_rol') 
-        ->where('id_rol', 2) 
-        ->select('users.*')
-        ->distinct()
+    $profesores = User::query()
+        ->whereHas('rol', fn ($query) => $query->where('nombre_rol', 'Profesor'))
+        ->orderBy('name')
         ->get();
         
     // 2. Consulta para todos tus cursos disponibles

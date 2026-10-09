@@ -33,7 +33,7 @@
                     <a href="{{ route('home') }}"
                        class="btn btn-sm btn-outline-primary">
 
-                        Dashboard
+                        Panel principal
 
                     </a>
 
