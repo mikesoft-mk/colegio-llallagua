@@ -1,8 +1,8 @@
 <nav class="navbar navbar-expand-lg navbar-dark public-navbar">
     <div class="container public-navbar-inner">
         <a class="navbar-brand" href="{{ route('inicio') }}" aria-label="Ir al inicio">
-            <img src="{{ asset('theme/img/logo.png') }}" class="logo-navbar" alt="Logotipo de la Unidad Educativa Llallagua">
-            <span class="brand-name">U.E. LLALLAGUA<small>Unidad Educativa</small></span>
+            <img src="{{ asset('theme/img/logo-2.png') }}" class="logo-navbar" alt="Logotipo de la Unidad Educativa Llallagua">
+            
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarPrincipal" aria-controls="navbarPrincipal" aria-expanded="false" aria-label="Abrir menú de navegación"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarPrincipal">
