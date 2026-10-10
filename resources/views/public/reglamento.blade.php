@@ -1,22 +1,6 @@
 @extends('layouts.public')
-
-@section('title', 'Reglamento')
+@section('title', 'Reglamento | Unidad Educativa Llallagua')
+@section('hero') @include('partials.page-banner',['titulo'=>'Reglamento','descripcion'=>'Normas que orientan la convivencia respetuosa en nuestra comunidad.','imagen'=>'theme/img/banner-historia.jpg']) @endsection
 @section('content')
-@include('partials.page-banner',[
-    'titulo'=>'Reglamento',
-    'descripcion'=>'Consulta el reglamento del colegio y mantente al tanto de las normas y políticas establecidas.',
-    'imagen'=>'theme/img/banner-reglamento.jpg'
-])
-
-<section class="py-5">
-    <div class="container">
-
-        <div class="text-center mb-5">
-            <h2 class="fw-bold">Reglamento</h2>
-            <p class="text-muted">
-                Consulta el reglamento del colegio y mantente al tanto de las normas y políticas establecidas.
-            </p>
-        </div>
-
-
+<section class="content-section"><span class="section-kicker">Convivencia escolar</span><h2>Reglamento institucional</h2><p class="lead">Las normas de convivencia promueven un ambiente seguro, respetuoso y favorable para el aprendizaje.</p><div class="info-panel"><i class="fas fa-book-reader"></i><div><h3>Respeto y responsabilidad</h3><p>Invitamos a toda la comunidad educativa a conocer y cumplir las disposiciones institucionales vigentes.</p></div></div></section>
 @endsection

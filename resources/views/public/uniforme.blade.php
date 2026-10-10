@@ -1,22 +1,6 @@
 @extends('layouts.public')
-
-@section('title', 'Uniforme Escolar')
+@section('title', 'Uniforme Escolar | Unidad Educativa Llallagua')
+@section('hero') @include('partials.page-banner',['titulo'=>'Uniforme escolar','descripcion'=>'Presentación, identidad y compromiso con nuestra institución.','imagen'=>'theme/img/banner-uniforme.jpg']) @endsection
 @section('content')
-@include('partials.page-banner',[
-    'titulo'=>'Uniforme Escolar',
-    'descripcion'=>'Información sobre el uniforme escolar y sus especificaciones.',
-    'imagen'=>'theme/img/banner-uniforme.jpg'
-])
-
-<section class="py-5">
-    <div class="container">
-
-        <div class="text-center mb-5">
-            <h2 class="fw-bold">Uniforme</h2>
-            <p class="text-muted">
-                Información sobre el uniforme escolar y sus especificaciones.
-            </p>
-        </div>
-
-
+<section class="content-section"><span class="section-kicker">Identidad institucional</span><h2>Presentación de nuestros estudiantes</h2><p class="lead">El uniforme representa la pertenencia a la Unidad Educativa Llallagua y acompaña la formación de hábitos de orden y respeto.</p><div class="info-panel"><i class="fas fa-user-graduate"></i><div><h3>Uso responsable</h3><p>Recomendamos mantener una presentación limpia y ordenada durante las actividades académicas y actos institucionales.</p></div></div></section>
 @endsection

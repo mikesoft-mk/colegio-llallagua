@@ -1,57 +1,15 @@
-<div class="top-bar bg-white border-bottom">
-
-    <div class="container">
-
-        <div class="row align-items-center">
-
-            <!-- Contacto -->
-
-            <div class="col-lg-6 col-md-7 text-center text-md-left d-none d-md-block">
-
-                <small>
-
-                    <i class="fas fa-phone-alt text-primary mr-2"></i>
-
-                    +591 12345678
-
-                    <span class="mx-3 text-muted">|</span>
-
-                    <i class="fas fa-envelope text-primary mr-2"></i>
-
-                    info@empresa.com
-
-                </small>
-
-            </div>
-
-            <!-- Botones -->
-
-            <div class="col-lg-6 col-md-5 text-center text-md-right mt-2 mt-md-0">
-
-                @auth
-
-                    <a href="{{ route('home') }}"
-                       class="btn btn-sm btn-outline-primary">
-
-                        Panel principal
-
-                    </a>
-
-                @else
-
-                    <a href="{{ route('login') }}"
-                       class="btn btn-sm btn-primary">
-
-                        Iniciar Sesión
-
-                    </a>
-
-                @endauth
-
-            </div>
-
+<div class="top-bar">
+    <div class="container top-bar-content">
+        <div class="top-bar-contact d-none d-md-flex">
+            <span><i class="fas fa-phone-alt"></i> +591 12345678</span>
+            <span><i class="fas fa-envelope"></i> secretaria@colegio.edu.bo</span>
         </div>
-
+        <div class="top-bar-action">
+            @auth
+                <a href="{{ route('home') }}"><i class="fas fa-th-large"></i> Panel principal</a>
+            @else
+                <a href="{{ route('login') }}"><i class="fas fa-sign-in-alt"></i> Iniciar sesión</a>
+            @endauth
+        </div>
     </div>
-
 </div>
