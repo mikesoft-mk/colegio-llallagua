@@ -40,3 +40,9 @@ Realiza una copia de seguridad antes de una migración que modifique o elimine i
 ## Respaldo inicial
 
 El archivo SQL histórico se conserva únicamente como respaldo externo. Puede importarse una vez para recuperar datos existentes, pero los cambios posteriores de esquema deben viajar mediante migraciones.
+
+## Panel administrativo
+
+La barra superior permite buscar docentes, estudiantes y cursos. Los Directores pueden consultar todos los registros; los Profesores solo ven sus propios cursos y los estudiantes inscritos en ellos.
+
+Las notificaciones se almacenan en la base de datos. Un docente recibe un aviso cuando se le asigna un curso o cuando un Director cambia su estado entre activo e inactivo. Al abrir una notificación se marca como leída.

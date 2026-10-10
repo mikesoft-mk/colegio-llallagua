@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Rol;
 use App\Models\User;
+use App\Notifications\EstadoDocenteActualizado;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -48,7 +49,7 @@ class RegistroUsuariofController extends Controller
 
     public function actualizarProfesor(Request $request, int $id)
     {
-        $user = User::findOrFail($id);
+        $user = User::with('rol')->findOrFail($id);
         $data = $request->validate([
             'name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
@@ -71,6 +72,11 @@ class RegistroUsuariofController extends Controller
             'last_name' => Str::title($data['last_name']),
         ]);
         $user->save();
+        $user->load('rol');
+
+        if ($user->wasChanged('estado_activo') && $user->rol?->nombre_rol === 'Profesor') {
+            $user->notify(new EstadoDocenteActualizado((bool) $user->estado_activo));
+        }
 
         return redirect()->route('profesores.vista')->with('success', 'Usuario actualizado con éxito.');
     }
